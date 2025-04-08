@@ -1,6 +1,96 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs2avm2b5dj7d"]
+[gd_scene load_steps=3 format=3 uid="uid://cs2avm2b5dj7d"]
 
 [ext_resource type="Script" uid="uid://dk2n6pwavrv2n" path="res://menu.gd" id="1_lti8b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lti8b"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_lti8b")
+
+[node name="SoloBtn" type="Button" parent="."]
+offset_left = 613.0
+offset_top = 281.0
+offset_right = 739.0
+offset_bottom = 331.0
+text = "Solo"
+
+[node name="MultiBtn" type="Button" parent="."]
+offset_left = 613.0
+offset_top = 354.0
+offset_right = 739.0
+offset_bottom = 401.0
+text = "Multi"
+
+[node name="SettingsBtn" type="Button" parent="."]
+offset_left = 613.0
+offset_top = 422.0
+offset_right = 739.0
+offset_bottom = 470.0
+text = "Settings"
+
+[node name="SettingsContainer" type="TabContainer" parent="."]
+visible = false
+offset_left = 268.0
+offset_top = 176.0
+offset_right = 1093.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lti8b")
+current_tab = 0
+
+[node name="Audio" type="VBoxContainer" parent="SettingsContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/Audio"]
+layout_mode = 2
+
+[node name="Volume" type="Label" parent="SettingsContainer/Audio/HBoxContainer"]
+layout_mode = 2
+text = "Volume: "
+
+[node name="HSlider" type="HSlider" parent="SettingsContainer/Audio/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tick_count = 10
+
+[node name="Video" type="VBoxContainer" parent="SettingsContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Controls" type="VBoxContainer" parent="SettingsContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ApplyBtn" type="Button" parent="."]
+visible = false
+offset_left = 896.0
+offset_top = 646.0
+offset_right = 1037.0
+offset_bottom = 689.0
+text = "Apply"
+
+[node name="CancelBtn" type="Button" parent="."]
+visible = false
+offset_left = 739.0
+offset_top = 646.0
+offset_right = 867.0
+offset_bottom = 689.0
+text = "Cancel"
+
+[connection signal="pressed" from="SoloBtn" to="." method="_on_solo_btn_pressed"]
+[connection signal="pressed" from="MultiBtn" to="." method="_on_multi_btn_pressed"]
+[connection signal="pressed" from="SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="ApplyBtn" to="." method="_on_apply_btn_pressed"]
+[connection signal="pressed" from="CancelBtn" to="." method="_on_cancel_btn_pressed"]
